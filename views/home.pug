@@ -1,0 +1,73 @@
+html
+  head
+    title NYCDA Bloging app
+    link(rel='stylesheet', href='css/blog.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    link(rel='stylesheet', type='text/css', href='//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+  body
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='#') NYCDA Blog
+        ul.nav.navbar-nav
+          li.active
+            a(href='http://localhost:3000/home') Dashboard
+          li
+            a(href='http://localhost:3000/profile') Your wall
+          li
+            //- a(href='http://localhost:3000/messages') Add new post
+        button.btn.btn-danger.navbar-btn.pull-right 
+          a(href='http://localhost:3000/logout') logout 
+    .container
+      .row
+        .col-3.pull-right
+          .sidebar-nav
+            .well(style='width:300px; padding: 8px 0;')
+              ul.nav.nav-list
+                li
+                  h3   Blog Activities
+                li.active
+                  a(href='http://localhost:3000/home')
+                    i.fa.fa-home.fa(aria-hidden='true')
+                    |  Dashboard
+                li
+                  a(href='http://localhost:3000/profile')
+                    i.fa.fa-user.fa(aria-hidden='true')
+                    |  Your wall
+                li
+                  //- a(href='http://localhost:3000/messages')
+                    i.fa.fa-edit.fa(aria-hidden='true')
+                    |  write new post.
+
+    each blogpost in blogposts
+        .col-sm-9
+          strong #{blogpost.person.firstname}
+          br
+          |post
+          br
+          br
+          strong Topic
+          | #{blogpost.topic}
+          br
+          br
+          P
+            | #{blogpost.postmessage}
+          br
+            
+          //- each  blogpost.person in blogpost.
+                strong blog by : #{blogpost.person.firstname} #{blogpost.person.lastname} 
+          
+          each postcomment  in blogpost.postcomments
+                strong #{postcomment.person.firstname} #{postcomment.person.lastname}'s
+                br
+                | comment
+                p  #{postcomment.postcomment}
+
+          form( action="/comment"  role='form' method="POST" )
+              .form-group
+                label(for='exampleTextarea') you Comments Here
+                input#exampleInputEmail1.form-control(type='hidden', name='commentId', value=blogpost.id, placeholder="")
+                textarea#exampleTextarea.form-control( type='text', name='comment', placeholder='Write  your post here' rows='2')
+              button.btn.btn-primary(type='submit' value="Post") Post
+

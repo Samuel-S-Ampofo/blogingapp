@@ -1,0 +1,26 @@
+{
+  "name": "basicnodeblog",
+  "version": "1.0.0",
+  "description": " mircro blogging app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "blogging",
+    "twitter"
+  ],
+  "author": "Shmuel  S Ampofo",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-session": "^2.0.0-beta.2",
+    "cookies": "^0.7.0",
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "pg": "^6.2.3",
+    "promises": "^0.2.5",
+    "pug": "^2.0.0-rc.2",
+    "sequelize": "^3.30.4"
+  }
+}

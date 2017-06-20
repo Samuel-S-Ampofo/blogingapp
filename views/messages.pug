@@ -1,0 +1,64 @@
+doctype html
+html
+  head
+    title NYCDA Bloging app
+    link(rel='stylesheet', href='/css/blog.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    link(rel='stylesheet', type='text/css', href='//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script.
+      $('#exampleModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var recipient = button.data('whatever') // Extract info from data-* attributes
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this)
+      modal.find('.modal-title').text('New message to ' + recipient)
+      modal.find('.modal-body input').val(recipient)
+      })
+  body
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='#') NYCDA Blog
+        ul.nav.navbar-nav
+          li.active
+             a(href='http://localhost:3000/home') Dashboard
+          li
+            a(href='http://localhost:3000/profile') Your wall
+          li
+            a(href='http://localhost:3000/messages') Add new post
+        button.btn.btn-danger.navbar-btn.pull-right
+          a(href='http://localhost:3000/logout') logout 
+    .container
+      .row
+        .col-3.pull-right
+          .sidebar-nav
+            .well(style='width:300px; padding: 8px 0;')
+              ul.nav.nav-list
+                li
+                  h3   Blog Activities
+                li.active
+                  a(href='http://localhost:3000/home')
+                    i.fa.fa-home.fa(aria-hidden='true')
+                    |  Dashboard
+                li
+                  a(href='http://localhost:3000/profile')
+                    i.fa.fa-user.fa(aria-hidden='true')
+                    |  Your wall
+                li
+                  a(href='http://localhost:3000/messages')
+                    i.fa.fa-edit.fa(aria-hidden='true')
+                    |  write new post.
+       
+      .col-sm-9
+        form( action="/message"  role='form' method="POST" )
+          .form-group
+            label(for='exampleInputEmail1') Post tittle
+            input#exampleInputEmail1.form-control(type='text', name='postopic', placeholder='Post  Tittle')
+            small#emailHelp.form-text.text-muted
+          .form-group
+            label(for='exampleTextarea') Your Message here
+            textarea#exampleTextarea.form-control( type='text', name='postmessage', placeholder='Write  your post here' rows='5')
+          button.btn.btn-primary(type='submit' value="Post") Post
+

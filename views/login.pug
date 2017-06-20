@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title NYCDA Bloging app
+    link(rel='stylesheet', href='css/blog.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    link(rel='stylesheet', type='text/css', href='//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+  body
+    .container
+      .row.centered-form
+        .col-xs-12.col-sm-8.col-md-4.col-sm-offset-2.col-md-offset-4
+          .panel.panel-default
+            .panel-heading
+              h3.panel-title
+                | Please fill in you details
+                small to sign up for the NYCDA blog
+            .panel-body
+              form(action="/login" role='form' method="POST")
+                .row
+                .form-group
+                  input#email.form-control.input-sm(type='email', name='email', placeholder='Email Address')
+                .row
+                .form-group
+                  input#password.form-control.input-sm(type='password', name='password', placeholder='Password')
+                .row
+                .form-group
+                  input.btn.btn-info.btn-block(type='submit', value='Login')
+                  P No login details.
+                    a(href='http://localhost:3000/signup') Sign up Here
+
+

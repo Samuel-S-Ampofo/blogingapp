@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+    <html>
+    <style >
+        
+body{padding:20px;}
+
+.notice {
+    padding: 15px;
+    background-color: #fafafa;
+    border-left: 6px solid #7f7f84;
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+       -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+            box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+}
+.notice-sm {
+    padding: 10px;
+    font-size: 80%;
+}
+.notice-lg {
+    padding: 35px;
+    font-size: large;
+}
+.notice-success {
+    border-color: #80D651;
+}
+.notice-success>strong {
+    color: #80D651;
+}
+.notice-info {
+    border-color: #45ABCD;
+}
+.notice-info>strong {
+    color: #45ABCD;
+}
+.notice-warning {
+    border-color: #FEAF20;
+}
+.notice-warning>strong {
+    color: #FEAF20;
+}
+.notice-danger {
+    border-color: #d73814;
+}
+.notice-danger>strong {
+    color: #d73814;
+}
+
+    </style>
+
+    <head>
+        <title>NYCDA Bloging app</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script >
+        $('#exampleModal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) // Button that triggered the modal
+          var recipient = button.data('whatever') // Extract info from data-* attributes
+          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+          var modal = $(this)
+          modal.find('.modal-title').text('New message to ' + recipient)
+          modal.find('.modal-body input').val(recipient)
+        })
+
+    </script>
+
+
+    </head>
+
+    <body>
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">NYCDA Blog</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Dashboard</a></li>
+              <li><a href="#">Your wall</a></li>
+              <li><a href="#">Add new post</a></li>
+               <li><a href="#">Members</a></li>
+            </ul>
+            <button class="btn btn-danger navbar-btn pull-right">logout</button>
+          </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+
+            <div class="col-3 pull-right"> 
+                    <div class="sidebar-nav">
+                        <div class="well" style="width:300px; padding: 8px 0;">
+                                        <ul class="nav nav-list"> 
+                                          <li class=""><h3>  Blog Activities</h3></li>        
+                                          <li class="active"><a href="index"><i class="icon-home"></i>Dashboard</a></li>
+                                          <li><a href="#"><i class="icon-edit"></i>Your wall</a></li>
+                                          <li><a href="#"><i class="icon-calendar"></i>Followers</a></li>
+                                          <li><a href="#"><i class="icon-comment"></i> Members</a></li>
+                                        </ul>
+                                    </div>          
+                                 </div>
+                             </div>
+                         </div>
+
+
+                    <!--   message  form   -->
+                    <div class="col-sm-9">
+                        <form>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Post tittle</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Post  Tittle">
+                            <small id="emailHelp" class="form-text text-muted"></small>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label for="exampleTextarea">Your Message here</label>
+                            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                          </div>
+
+                          <button type="submit" class="btn btn-primary">Post</button>
+                        </form>
+                        </div>
+                    </div>
+
+
+
+
+                <!-- psot and cokmemments optio -->
+                <div class="col-sm-9">
+                <div class=" notice notice-lg">
+                    <strong>Samuel  S. Ampofo</strong>Post
+                    <br>
+                    <strong>Topic </strong>  Hvaninga great time latly 
+                    <br>
+                    <br>
+                    <p> Wil iemand ruilen? Geldt ook voor mijn volgende ronde. Mag eigenlijk zes weken niet echt inspannen maar denk dat het over een maand wel lukt. Sidenote, ik ben 8 t/m 23 juli als het goed is ook weg</p>
+                    <br>
+                    <div>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Comment</button>
+                    </div>
+                    <br>
+                    <div class="notice notice-sm">
+                    <strong>Joshua S sampene </strong>comment
+                    <p> what hav you been up to lately</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+
+
+                 
+                                       
+    </body> 
+    </html>	
+

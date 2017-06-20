@@ -1,0 +1,64 @@
+html
+  head
+    title NYCDA Bloging app
+    link(rel='stylesheet', href='css/blog.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    link(rel='stylesheet', type='text/css', href='//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+  body
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='#') NYCDA Blog
+        ul.nav.navbar-nav
+          li.active
+            a(href='http://localhost:3000/home') Dashboard
+          li
+            a(href='http://localhost:3000/profile') Your wall
+          li
+            a(href='http://localhost:3000/messages') Add new post
+        button.btn.btn-danger.navbar-btn.pull-right 
+          a(href='http://localhost:3000/logout') logout 
+    .container
+      .row
+        .col-3.pull-right
+          .sidebar-nav
+            .well(style='width:300px; padding: 8px 0;')
+              ul.nav.nav-list
+                li
+                  h3   Blog Activities
+                li.active
+                  a(href='http://localhost:3000/home')
+                    i.fa.fa-home.fa(aria-hidden='true')
+                    |  Dashboard
+                li
+                  a(href='http://localhost:3000/profile')
+                    i.fa.fa-user.fa(aria-hidden='true')
+                    |  Your wall
+                li
+                  a(href='http://localhost:3000/messages')
+                    i.fa.fa-edit.fa(aria-hidden='true')
+                    |  write new post.
+    each blogpost 
+      .col-sm-9
+        strong Samuel S. Ampofo
+        |post
+        br
+        br
+        strong Topic
+        | #{blogpost.topic}
+        br
+        br
+        P
+          | #{blogpost.postmessage}
+        br
+        strong Joshua S sampene 
+        | comment
+        p  what hav you been up to lately
+        br
+        form( action="/comment/:postId"  role='form' method="POST" )
+          .form-group
+            label(for='exampleTextarea') you Comments Here
+            textarea#exampleTextarea.form-control( type='text', name='comment', placeholder='Write  your post here' rows='2')
+          button.btn.btn-primary(type='submit' value="Post") Post
+
