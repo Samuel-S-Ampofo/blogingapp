@@ -18,7 +18,7 @@ html
           li
             a(href='http://localhost:3000/messages') Add new post
         button.btn.btn-danger.navbar-btn.pull-right 
-          a(href='http://localhost:3000/logout') logout 
+          a(href='http://localhost:logout') logout 
     .container
       .row
         .col-3.pull-right
@@ -36,10 +36,10 @@ html
                     i.fa.fa-user.fa(aria-hidden='true')
                     |  Your wall
                 li
-                  //- a(href='http://localhost:3000/messages')
+                  a(href='http://localhost:3000/messages')
                     i.fa.fa-edit.fa(aria-hidden='true')
                     |  write new post.
-    each blogpost 
+    each blogpost in blogposts
       .col-sm-9
         strong Samuel S. Ampofo
         |post
@@ -52,6 +52,7 @@ html
         P
           | #{blogpost.postmessage}
         br
+
         strong Joshua S sampene 
         | comment
         p  what hav you been up to lately

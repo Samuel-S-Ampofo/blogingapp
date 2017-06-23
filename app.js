@@ -14,6 +14,7 @@ const bcrypt = require('bcrypt');
 
 const bodyParser = require('body-parser');
 app.use('/', bodyParser()); //???
+
 // app.use(session({
 // 	secret: process.env.secret,
 // 	resave: true,
@@ -22,7 +23,7 @@ app.use('/', bodyParser()); //???
 
 
 app.use(session({
-	secret: 'oh wow very secret much security',
+	secret: 'this should keep you safe',
 	resave: true,
 	saveUninitialized: false
 }));
@@ -30,7 +31,8 @@ app.use(session({
 
 // postgressql database creation and sync.
 
-var sequelize = new Sequelize('postgres://SHMUEL:5432@localhost/bloggappp');
+var sequelize = new Sequelize('postgres://user:password@localhost/my_db');
+
 
 //definition of tables
 
@@ -105,55 +107,37 @@ app.post('/login', function (req, res){
 
 	let eMail = req.body.email
 	let passWord = req.body.password
-
-	console.log(eMail);
-	console.log(passWord);
-
+		console.log(eMail);
+		console.log(passWord);
 
 		Person.findOne({
 			where: {
 				email: eMail
 				}
 			})
-	
 		.then( (user) => {
-		 
 			 	var hash =  user.password
-
 				  bcrypt.compare(passWord, hash, function(err, result) {
-
 					 		if(result === true){
-
 					 			req.session.user = user;
+					 			res.redirect('profile');}
+					 			else{
 
-					 			res.redirect('profile'); 
-					 		}
-
+					 			}
 					});
-				
 		});
 });
 
 
-
 app.get('/profile', function (req, res){
-
 	var user = req.session.user;
- //    if (user === undefined) {
- //        res.redirect('/?profile=' + encodeURIComponent("Please log in to view your profile."));
- //    } else {
- //    //     res.render('profile', {
- //    //         user: user
- //    //     });
- //    // }
+
  	console.log("this is the userid;" + user.id);
 	 Blogpost.findAll({order: '"updatedAt" DESC',
 	 	where:{ 
 	 		personId:user.id  //
-
 	 		// include: [Account, {model: Comment, include: [Account]}]
 	 	}, include: [Person, {model: Postcomment, include: [Person]}]
-	 	
 	})
 	.then(function (userblogs){
 		console.log("These are the blogs: " + userblogs);
@@ -191,8 +175,6 @@ app.post('/comment', function (req, res){
 		res.redirect('home')
 });
 
-
-
 //find all blog posts
 app.get('/home', function (req, res){
 	Blogpost.findAll(
@@ -205,7 +187,6 @@ app.get('/home', function (req, res){
    			blogposts:blogposts
    		});
 	});
-
 });
 
 
@@ -232,22 +213,13 @@ app.post('/signup', function (req, res){
 	    email: eMail,
 	    password:hash 
 		})
-
 		.then( () => {
 		res.render('login') //res.render happens after the person is created -- synchronisity as you want it
 		})
 	});
 });
 
-//   res.render('login') // asynchronous mayhem
-// })
 
-
-// Message and post dont not have specifica post thay are onli existing rout for post//
-
-// app.get('/messages', function (req, res){
-//   res.render('messages')
-// })
 
 app.post('/message', function (req, res){
 
@@ -263,8 +235,7 @@ app.post('/message', function (req, res){
   res.redirect('profile')
 })
 
-// http://localhost:3000/messages/4
-// http://localhost:3000messages/135
+
 app.get('/messages/:postId', (req, res) => {
 	const postId = req.userblog.id
 	const postComment = req.body.comment
@@ -287,10 +258,6 @@ app.get('/messages/:postId', (req, res) => {
 app.get('/comment', (req, res) => {
 	
 });
-
-
-
-
 
 
 app.get('/logout', function (req, res) {
